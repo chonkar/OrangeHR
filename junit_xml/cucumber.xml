@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="2" time="88.371">
+    <testcase classname="guru99 login feature" name="guru99 login test scenario and Add Customer" time="86.576">
+        <system-out><![CDATA[Given user is present on login page.........................................passed
+And title of login page is GTPL Bank Home Page..............................passed
+When user enters userID and Password from given sheetname "LoginDetails" and rownumber 0.passed
+And user clicks on login button.............................................passed
+Then user is on home page...................................................passed
+Then user clicks on Telecom Project.........................................passed
+Then user clicks on close button............................................passed
+Then user clicks on add customer button.....................................passed
+Then user is on add customer page...........................................passed
+Then user enters billing address from given sheetname "LoginDetails" and rownumber 0.passed
+]]></system-out>
+    </testcase>
+    <testcase classname="guru99 login feature" name="guru99 login test scenario and Add Tariff Plan" time="87.938">
+        <system-out><![CDATA[Given user is already present on login page.................................passed
+And title of the login page is GTPL Bank Home Page..........................passed
+When user enter userID and Password from given sheetname "LoginAddTariffPlanDetails" and rownumber 0.passed
+And user clicks on the login button.........................................passed
+Then user navigates to home page............................................passed
+Then user clicks on Telecom Project field...................................passed
+Then user clicks on the close button........................................passed
+Then user clicks on add Tariff Plan.........................................passed
+Then user is on add tariff plan page........................................passed
+Then user enters tariff plan details from given sheetname "LoginAddTariffPlanDetails" and rownumber 0.passed
+]]></system-out>
+    </testcase>
+</testsuite>
