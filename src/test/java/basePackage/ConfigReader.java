@@ -18,7 +18,7 @@ public class ConfigReader {
 		
 		prop = new Properties();
 		try {
-			FileInputStream fileIP = new FileInputStream("D:\\RobotFramework\\Acacium\\src\\test\\resources\\config\\config.properties");
+			FileInputStream fileIP = new FileInputStream("D:\\RobotFramework\\Orange HRM Project\\src\\test\\resources\\config\\config.properties");
 			prop.load(fileIP);
 			fetchedProperty = prop.getProperty(propertyName);
 		} catch (FileNotFoundException e) {

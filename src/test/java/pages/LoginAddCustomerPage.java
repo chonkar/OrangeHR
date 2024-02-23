@@ -12,14 +12,10 @@ public class LoginAddCustomerPage {
 
 	private WebDriver driver;
 
-	private By UserID = By.xpath("//input[@id='b2-b3-Input_Username']");
-	private By Password = By.xpath("//input[@id='b2-b3-Input_Password']");
-	private By Loginbutton = By.xpath("//button[@id='b2-b3-Button_Login']");
-	private By ForgetPassword = By.xpath("//span[contains(text(), 'Forgot')]");
-	private By termsAndConditions=By.xpath("//input[@id='b2-b3-Checkbox_Disclaimer']");
-	private By InvalidErrorMessage= By.xpath("//div[contains(text(),'Invalid')]");
-	private By clickonUser=By.xpath("//div[@id='b2-b2-$b2']");
-	private By LogOutButton=By.xpath("//span[contains(text(),'Log out')]");
+	private By UserID = By.xpath("//input[@id='user-name']");
+	private By Password = By.xpath("//input[@id='password']");
+	private By Loginbutton = By.xpath("//input[@id='login-button']");
+	
 	
 	SoftAssert softAssert=new SoftAssert();
 	
@@ -48,9 +44,7 @@ public class LoginAddCustomerPage {
 
 	}
 
-	public void ClickLoginButton() throws InterruptedException {
-		WebDriverWait wait= new WebDriverWait(driver,20);
-		wait.until(ExpectedConditions.elementToBeClickable(Loginbutton));
+	public void ClickLoginButton()  {
 		driver.findElement(Loginbutton).click();
 		System.out.println("Clicked on Login button");
 
@@ -65,29 +59,7 @@ public class LoginAddCustomerPage {
 		return driver.getTitle();
 	}
 
-	public String GetCustomerPageTitle() throws InterruptedException {
-
-		return driver.getTitle();
-
-	}
 	
-	public void verifyErrorMessage() {
-		String ErrorMessageonHomePage= driver.findElement(InvalidErrorMessage).getText();
-		softAssert.assertEquals(ErrorMessageonHomePage, "Invalid username or password.");
-		
-	}
-	
-	public void clickonForgetPasswordLink() {
-		driver.findElement(ForgetPassword).click();
-	}
-	
-	public void Termsandconditions() {
-		driver.findElement(termsAndConditions).click();
-	}
-	
-	public void LogoutButton() {
-		driver.findElement(LogOutButton).click();
-	}
 
 	
 }

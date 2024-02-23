@@ -63,7 +63,7 @@ public class LoginStepDefinition {
 	{
 	 
 		ExcelReader reader = new ExcelReader();
-	List<Map<String,String>> testdata =	reader.getData("D:\\RobotFramework\\InspectionsSystem_OutSystem\\LoginDetailsData.xlsx",SheetName);
+	List<Map<String,String>> testdata =	reader.getData("D:\\RobotFramework\\Orange HRM Project\\LoginDetailsData.xlsx",SheetName);
 		
 	String userid = testdata.get(RowNumber).get("UserID");
 	String password = testdata.get(RowNumber).get("password");	
@@ -75,7 +75,7 @@ public class LoginStepDefinition {
 	
 
 	@And("^user clicks on login button$")
-	public void user_clicks_on_login_button() throws InterruptedException
+	public void user_clicks_on_login_button() 
 
 	{
 		
@@ -94,15 +94,5 @@ public class LoginStepDefinition {
 	
 	}
 	
-	@Then("user should get an error message")
-	public void user_should_get_an_error_message() {
-		loginaddcustomer.verifyErrorMessage();
-		
-	}
-	
-	@When("User checks Terms and Condition checkbox")
-	public void user_checks_remember_me_checkbox() {
-		loginaddcustomer.Termsandconditions();
-	}
-	
+
   }
