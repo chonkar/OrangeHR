@@ -1,6 +1,6 @@
 Feature: Verify login feature
 
-  @Smoke
+ @Smoke
   Scenario Outline: Validate successful login into the system 
     # data driven with excel sheet
     Given user is present on login page
@@ -15,3 +15,6 @@ Feature: Verify login feature
       | LoginDetails |         1 |
       | LoginDetails |         2 |
       | LoginDetails |         3 |
+
+      
+    

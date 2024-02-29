@@ -11,6 +11,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.Test;
 
 import basePackage.ConfigReader;
 import basePackage.DriverFactory;
@@ -24,7 +26,9 @@ import pages.LoginAddCustomerPage;
 
 public class LoginStepDefinition {
 	
-	private LoginAddCustomerPage loginaddcustomer = new LoginAddCustomerPage(DriverFactory.getDriver());
+	private RemoteWebDriver driver1;
+	
+	private LoginAddCustomerPage loginaddcustomer= new LoginAddCustomerPage(DriverFactory.getDriver());
 	private ConfigReader configreader = new ConfigReader();
 	//private WebDriver driver;
 	private String PageTitle;
@@ -32,11 +36,12 @@ public class LoginStepDefinition {
 	private String GetCustomerPageTitle;
 	private String ForgetPasswordPageTitle;
 	
-
+@Test
 	@Given("^user is present on login page$")
 	public void user_is_present_on_login_page()
 
 	{
+		
 
 		configreader = new ConfigReader();
 		String url = configreader.initialiseProperties("URL");
@@ -46,6 +51,7 @@ public class LoginStepDefinition {
 		
 	}
 
+@Test
 	@And("^title of login page is Login$")
 	public void title_of_login_page() throws InterruptedException
 
@@ -56,7 +62,7 @@ public class LoginStepDefinition {
 		
 	}
 	
-	
+@Test	
 	@When("user enters userID and Password from given sheetname {string} and rownumber {int}")
 	public void user_enters_user_id_and_password_from_given_sheetname_and_rownumber(String SheetName, Integer RowNumber) throws InvalidFormatException, IOException, InterruptedException 
 	
@@ -73,7 +79,7 @@ public class LoginStepDefinition {
 	
 	}
 	
-
+@Test
 	@And("^user clicks on login button$")
 	public void user_clicks_on_login_button() 
 
@@ -83,7 +89,7 @@ public class LoginStepDefinition {
 
 	}
  
-	
+@Test	
 	@Then("^user is on home page$")
 	public void user_is_on_home_page() throws InterruptedException
 
