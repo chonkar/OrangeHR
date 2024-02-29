@@ -10,6 +10,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.Parameters;
 
 import basePackage.ConfigReader;
 import basePackage.DriverFactory;
@@ -24,7 +25,7 @@ public class ApplicationHooks {
 	private ConfigReader configReader;
 	
 	@Before(order=0)
-	public void launchBrowser() throws MalformedURLException {
+	public void launchBrowser(String browser) throws MalformedURLException {
 		
 			configReader = new ConfigReader();
 			String browserName = configReader.initialiseProperties("Browser");
