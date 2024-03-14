@@ -72,6 +72,7 @@ public class BaseDriver {
 
 	@AfterClass(alwaysRun = true)
 	public void tearDownClass() throws IOException, InterruptedException {
+		testNGCucumberRunner.finish();
 		Runtime runtime = Runtime.getRuntime();
 		runtime.exec("cmd /c start dockerdown.bat");
 		Thread.sleep(2000);
@@ -105,7 +106,7 @@ public class BaseDriver {
 			System.out.println("File Deleted Sucessfully");
 		}
 		Thread.sleep(3000);
-		testNGCucumberRunner.finish();
+		
 	}
 
 }
