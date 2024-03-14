@@ -2,15 +2,12 @@ package stepDefinition;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.annotations.Parameters;
 
 import basePackage.ConfigReader;
 import basePackage.DriverFactory;
@@ -21,38 +18,33 @@ import io.cucumber.java.Scenario;
 
 public class ApplicationHooks {
 	
-	private WebDriver driver;
+	private DriverFactory driverFactory;
+	private WebDriver driver ;
 	private ConfigReader configReader;
 	
 	@Before(order=0)
-	public void launchBrowser(String browser) throws MalformedURLException {
+	public void launchBrowser() throws IOException {
 		
-			configReader = new ConfigReader();
-			String browserName = configReader.initialiseProperties("Browser");
-			driver=DriverFactory.initiateDriver(browserName);
-		}
-
-	
+		configReader = new ConfigReader();
+		String browserName = configReader.initialiseProperties("Browser");
+		driverFactory = new DriverFactory();
+		driver = driverFactory.initiateDriver(browserName);
+	}
 
 	@After(order=0)
 	public void quitBroswer() {
-	DriverFactory.quitbrowser();
-	//driver.quit();
+		driverFactory.quitbrowser();
 	}
 	
 	@AfterStep
 	public void screenShot(Scenario scenario) throws IOException {
 		
 		if(scenario.isFailed()) {
-			DriverFactory.getScreenshot(scenario);
-			/*
-			 * String screenShotName = scenario.getName().replaceAll(" ", "_");
-			 * 
-			 * File sourcePath =
-			 * ((TakesScreenshot)DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE)
-			 * ; byte[] FileContent=FileUtils.readFileToByteArray(sourcePath);
-			 * scenario.attach(FileContent, "image/png", screenShotName);
-			 */
+			String screenShotName = scenario.getName().replaceAll(" ", "_");
+			
+			File sourcePath = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+			byte[] FileContent=FileUtils.readFileToByteArray(sourcePath);
+			scenario.attach(FileContent, "image/png", screenShotName);
 		}
 	}
 	

@@ -14,6 +14,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.Test;
 
+//import Utils.TestContextSetup;
 import basePackage.ConfigReader;
 import basePackage.DriverFactory;
 import basePackage.ExcelReader;
@@ -24,45 +25,46 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.LoginAddCustomerPage;
 
-public class LoginStepDefinition {
+public class LoginStepDefinition extends DriverFactory {
 	
-	private RemoteWebDriver driver1;
 	
-	private LoginAddCustomerPage loginaddcustomer= new LoginAddCustomerPage(DriverFactory.getDriver());
+	private LoginAddCustomerPage loginaddcustomer = new LoginAddCustomerPage(DriverFactory.getDriver());
 	private ConfigReader configreader = new ConfigReader();
 	//private WebDriver driver;
 	private String PageTitle;
 	private String HomePageTitle;
-	private String GetCustomerPageTitle;
-	private String ForgetPasswordPageTitle;
+	//private String GetCustomerPageTitle;
+	//private String ForgetPasswordPageTitle;
+	//TestContextSetup testContextSetup;
 	
+	//LoginAddCustomerPage loginaddcustomer= new LoginAddCustomerPage();
+	
+	/*
+	 * public LoginStepDefinition(TestContextSetup testContextSetup) {
+	 * this.testContextSetup=testContextSetup; this.loginaddcustomer=
+	 * testContextSetup.pageObjectManager.getLoginPage(); }
+	 */
 @Test
 	@Given("^user is present on login page$")
-	public void user_is_present_on_login_page()
+	public void user_is_present_on_login_page() throws InterruptedException {
 
-	{
-		
+	configreader = new ConfigReader();
+	String url = configreader.initialiseProperties("URL");
+	DriverFactory.getDriver().get(url);
+	DriverFactory.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	
+	
+	}
 
-		configreader = new ConfigReader();
-		String url = configreader.initialiseProperties("URL");
-		DriverFactory.getDriver().get(url);
-		DriverFactory.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		
-		
+@Test	
+	@And("^title of login page is Login$")
+	public void title_of_login_page() throws InterruptedException{
+	PageTitle =  loginaddcustomer.getHomePageTitle();
+	System.out.println("The Page title is displayed as "+ PageTitle);
+	
 	}
 
 @Test
-	@And("^title of login page is Login$")
-	public void title_of_login_page() throws InterruptedException
-
-	{
-		
-	    PageTitle =  loginaddcustomer.getHomePageTitle();
-		System.out.println("The Page title is displayed as "+ PageTitle);
-		
-	}
-	
-@Test	
 	@When("user enters userID and Password from given sheetname {string} and rownumber {int}")
 	public void user_enters_user_id_and_password_from_given_sheetname_and_rownumber(String SheetName, Integer RowNumber) throws InvalidFormatException, IOException, InterruptedException 
 	
@@ -89,7 +91,7 @@ public class LoginStepDefinition {
 
 	}
  
-@Test	
+@Test
 	@Then("^user is on home page$")
 	public void user_is_on_home_page() throws InterruptedException
 
